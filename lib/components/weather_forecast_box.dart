@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/models/weather_forecast.dart';
 
-class WeatherForecast extends StatelessWidget {
-  const WeatherForecast({super.key});
+class WeatherForecastBox extends StatelessWidget {
+  final WeatherForecast weatherForecast;
+  const WeatherForecastBox({super.key, required this.weatherForecast});
 
   @override
   Widget build(BuildContext context) {
@@ -16,21 +18,21 @@ class WeatherForecast extends StatelessWidget {
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Text(
-                'Partly cloudy',
-                style: TextStyle(
+                weatherForecast.condition,
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               Text(
-                '2023-02-21',
-                style: TextStyle(
+                weatherForecast.date.toString(),
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -41,11 +43,11 @@ class WeatherForecast extends StatelessWidget {
           Column(
             children: [
               Image.network(
-                'https://cdn.weatherapi.com/weather/64x64/day/116.png',
+                'https:${weatherForecast.iconUrl}',
               ),
-              const Text(
-                '30°C',
-                style: TextStyle(
+              Text(
+                '${weatherForecast.tempC.toString()} °C',
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 16,
                   fontWeight: FontWeight.bold,

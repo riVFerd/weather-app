@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 
 class InputField extends StatelessWidget {
+  final TextEditingController inputController;
+
   const InputField({
-    super.key,
+    super.key, required this.inputController,
   });
 
   @override
   Widget build(BuildContext context) {
-    return const TextField(
-      decoration: InputDecoration(
+    return TextField(
+      controller: inputController,
+      decoration: const InputDecoration(
         hintText: 'Search',
         hintStyle: TextStyle(
           color: Colors.white,
@@ -23,7 +26,7 @@ class InputField extends StatelessWidget {
           ),
         ),
       ),
-      style: TextStyle(
+      style: const TextStyle(
         color: Colors.white,
         fontSize: 16,
       ),
