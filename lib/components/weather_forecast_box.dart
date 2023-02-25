@@ -3,10 +3,14 @@ import 'package:weather_app/models/weather_forecast.dart';
 
 class WeatherForecastBox extends StatelessWidget {
   final WeatherForecast weatherForecast;
+
   const WeatherForecastBox({super.key, required this.weatherForecast});
 
   @override
   Widget build(BuildContext context) {
+    final date =
+        '${weatherForecast.date.day}-${weatherForecast.date.month}-${weatherForecast.date.year}';
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
@@ -31,7 +35,7 @@ class WeatherForecastBox extends StatelessWidget {
                 height: 8,
               ),
               Text(
-                weatherForecast.date.toString(),
+                date,
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 16,
