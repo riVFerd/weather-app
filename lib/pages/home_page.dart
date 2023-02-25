@@ -83,7 +83,7 @@ class MainContent extends StatelessWidget {
                 '${weather.city} (${weather.country})\n Current Weather :',
                 style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 20,
+                  fontSize: 16,
                   height: 1.5,
                   fontWeight: FontWeight.bold,
                 ),
@@ -94,7 +94,7 @@ class MainContent extends StatelessWidget {
                 '${weather.currentCondition}\n${weather.currentTempC}°C',
                 style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 20,
+                  fontSize: 16,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -109,7 +109,7 @@ class MainContent extends StatelessWidget {
               'Weather Forecast :',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 20,
+                fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
             ),

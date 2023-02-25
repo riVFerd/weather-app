@@ -12,7 +12,7 @@ class WeatherForecastBox extends StatelessWidget {
         '${weatherForecast.date.day}-${weatherForecast.date.month}-${weatherForecast.date.year}';
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
         color: Colors.black.withOpacity(0.5),
         borderRadius: BorderRadius.circular(10),
@@ -27,7 +27,7 @@ class WeatherForecastBox extends StatelessWidget {
                 weatherForecast.condition,
                 style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 20,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
