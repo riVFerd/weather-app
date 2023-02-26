@@ -10,12 +10,18 @@ class InputField extends StatelessWidget {
     required this.inputController,
   });
 
+  // fetch weather data from the API
+  void _fetchWeather(String cityName, BuildContext context) {
+    BlocProvider.of<WeatherBloc>(context).add(FetchWeather(cityName));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         TextField(
+          onSubmitted: (inputText) => _fetchWeather(inputText, context),
           controller: inputController,
           decoration: const InputDecoration(
             hintText: 'Search for a city',
@@ -38,18 +44,15 @@ class InputField extends StatelessWidget {
           ),
         ),
         ElevatedButton(
-          onPressed: () {
-            BlocProvider.of<WeatherBloc>(context).add(
-              FetchWeather(inputController.text),
-            );
-          },
+          onPressed: () => _fetchWeather(inputController.text, context),
           style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 24,
-              )),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 24,
+            ),
+          ),
           child: const Text('Search'),
         ),
       ],

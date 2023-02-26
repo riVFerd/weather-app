@@ -9,9 +9,8 @@ abstract class WeatherEvent extends Equatable {
 
 class FetchWeather extends WeatherEvent {
   final String cityName;
-  final int? days;
 
-  const FetchWeather(this.cityName, {this.days});
+  const FetchWeather(this.cityName);
 
   @override
   List<Object> get props => [cityName];

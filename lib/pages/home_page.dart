@@ -5,7 +5,6 @@ import 'package:weather_app/bloc/weather_bloc.dart';
 import 'package:weather_app/components/input_field.dart';
 import 'package:weather_app/components/weather_forecast_box.dart';
 import 'package:weather_app/models/weather.dart';
-import 'package:weather_app/models/weather_forecast.dart';
 
 import '../components/error_text.dart';
 
@@ -47,11 +46,25 @@ class _HomePageState extends State<HomePage> {
                   builder: (context, state) {
                     if (state is WeatherInitial) {
                       return const ErrorText(
-                          textContent: 'Please enter a city name');
+                        textContent: 'Please enter a city name',
+                      );
+                    } else if (state is WeatherLoading) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
                     } else if (state is WeatherLoaded) {
                       return MainContent(weather: state.weather);
+                    } else if (state is WeatherError) {
+                      return ErrorText(
+                        textContent: state.message,
+                        imageUrl: state.imageUrl,
+                      );
+                    } else {
+                      return const ErrorText(
+                        textContent: 'Something went wrong',
+                        imageUrl: 'lib/assets/error.png',
+                      );
                     }
-                    return const Text('Error');
                   },
                 ),
               )

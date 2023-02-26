@@ -1,12 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:weather_app/models/weather.dart';
 import 'package:weather_app/models/weather_forecast.dart';
 
 class WeatherRepository {
-  final Dio _dio;
-
-  WeatherRepository(this._dio);
+  final Dio _dio = Dio();
 
   Future<Weather> getWeather(String city, {int days = 5}) async {
     try {
@@ -46,8 +43,19 @@ class WeatherRepository {
       );
 
       return weather;
-    } catch (e) {
-      throw Exception('Error getting weather $e');
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.unknown) {
+        throw const FormatException(
+          'No Internet Connection',
+          'lib/assets/network_error.png',
+        );
+      } else if (e.type == DioErrorType.badResponse) {
+        throw const FormatException(
+          'City not found',
+          'lib/assets/notfound.png',
+        );
+      }
+      throw FormatException('Error : $e', 'lib/assets/error.png');
     }
   }
 }

@@ -9,6 +9,8 @@ abstract class WeatherState extends Equatable {
 
 class WeatherInitial extends WeatherState {}
 
+class WeatherLoading extends WeatherState {}
+
 class WeatherLoaded extends WeatherState {
   final Weather weather;
 
@@ -20,8 +22,9 @@ class WeatherLoaded extends WeatherState {
 
 class WeatherError extends WeatherState {
   final String message;
+  final String? imageUrl;
 
-  const WeatherError({required this.message});
+  const WeatherError({required this.message, this.imageUrl});
 
   @override
   List<Object> get props => [message];
