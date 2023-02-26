@@ -1,18 +1,18 @@
 import 'package:dio/dio.dart';
 import 'package:weather_app/models/weather.dart';
 import 'package:weather_app/models/weather_forecast.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class WeatherRepository {
   final Dio _dio = Dio();
 
-  Future<Weather> getWeather(String city, {int days = 5}) async {
+  Future<Weather> getWeather(String city) async {
     try {
       final result = await _dio.get(
-        'http://api.weatherapi.com/v1/forecast.json',
+        dotenv.env['WEATHER_API_URL'].toString(),
         queryParameters: {
-          'key': '053cf902dc6f433584e81851232102',
+          'key': dotenv.env['WEATHER_API_KEY'].toString(),
           'q': city,
-          'days': days,
           'aqi': 'no',
           'alerts': 'no',
         },
