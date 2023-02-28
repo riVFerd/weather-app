@@ -1,17 +1,20 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:injectable/injectable.dart';
 import 'package:weather_app/models/weather.dart';
 import 'package:weather_app/models/weather_forecast.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+@lazySingleton
 class WeatherRepository {
-  final Dio _dio = Dio();
+  final Dio _dio;
+
+  WeatherRepository(this._dio);
 
   Future<Weather> getWeather(String city) async {
     try {
       final result = await _dio.get(
         dotenv.env['WEATHER_API_URL'].toString(),
         queryParameters: {
-          'key': dotenv.env['WEATHER_API_KEY'].toString(),
           'q': city,
           'aqi': 'no',
           'alerts': 'no',

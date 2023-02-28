@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:weather_app/bloc/weather_bloc.dart';
 import 'package:weather_app/components/input_field.dart';
 import 'package:weather_app/components/weather_forecast_box.dart';
@@ -92,11 +91,20 @@ class MainContent extends StatelessWidget {
           flex: 3,
           child: Column(
             children: [
-              Text(
-                '${weather.city} (${weather.country})\n Current Weather :',
+              Text.rich(
+                TextSpan(
+                    text: '${weather.city} (${weather.country})',
+                    children: const [
+                      TextSpan(
+                        text: '\n Current Weather :',
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
+                    ]),
                 style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 16,
+                  fontSize: 20,
                   height: 1.5,
                   fontWeight: FontWeight.bold,
                 ),
